@@ -163,7 +163,10 @@ if(state.swapSide){
     serveRight = (state.serve === "B");
 
 }
-
+   // PLAYER NAME
+el.playerA.textContent = leftName || "";
+el.playerB.textContent = rightName || "";
+ 
     // =========================
 // SCORE ANIMATION
 // =========================
