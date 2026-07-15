@@ -71,6 +71,8 @@ CONTROL ELEMENT
 
 const control={};
 
+let currentState = null;
+
 function bindControl(){
 
     control.leftName=document.getElementById("leftName");
@@ -183,6 +185,8 @@ RENDER
 Scoreboard.subscribe(render);
 
 function render(state){
+
+    currentState = state;
 
     let leftName,rightName;
     let leftScore,rightScore;
