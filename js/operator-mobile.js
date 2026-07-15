@@ -75,7 +75,7 @@ function startMatch(){
 
     el.setupScreen.style.display="none";
 
-    el.controlScreen.style.display="block";
+    el.controlScreen.style.display="flex";
 
     el.controlScreen.innerHTML=`
 
