@@ -71,8 +71,6 @@ CONTROL ELEMENT
 
 const control={};
 
-let currentState = null;
-
 function bindControl(){
 
     control.leftName=document.getElementById("leftName");
@@ -186,10 +184,6 @@ Scoreboard.subscribe(render);
 
 function render(state){
 
-    currentState = state;
-
-    console.log("swapSide =", state.swapSide);
-
     let leftName,rightName;
     let leftScore,rightScore;
     let leftSet,rightSet;
@@ -239,8 +233,6 @@ function render(state){
 
         control.serveB.textContent=
         state.serve==="B"?"🟢 SERVE":"";
-        
-}
 
     }
 
@@ -252,61 +244,29 @@ BUTTON EVENT
 
 function bindButton(){
 
-    document.getElementById("plusA").onclick = () => {
-
-    if(currentState && currentState.swapSide){
-
-        Scoreboard.addPoint("B");
-
-    }else{
+    document.getElementById("plusA").onclick=()=>{
 
         Scoreboard.addPoint("A");
 
-    }
+    };
 
-};
-
-    document.getElementById("minusA").onclick = ()=>{
-
-    if(currentState && currentState.swapSide){
-
-        Scoreboard.removePoint("B");
-
-    }else{
+    document.getElementById("minusA").onclick=()=>{
 
         Scoreboard.removePoint("A");
 
-    }
+    };
 
-};
-
-    document.getElementById("plusB").onclick = ()=>{
-
-    if(currentState && currentState.swapSide){
-
-        Scoreboard.addPoint("A");
-
-    }else{
+    document.getElementById("plusB").onclick=()=>{
 
         Scoreboard.addPoint("B");
 
-    }
+    };
 
-};
-
-    document.getElementById("minusB").onclick = ()=>{
-
-    if(currentState && currentState.swapSide){
-
-        Scoreboard.removePoint("A");
-
-    }else{
+    document.getElementById("minusB").onclick=()=>{
 
         Scoreboard.removePoint("B");
 
-    }
-
-};
+    };
 
     document.getElementById("startTimer").onclick=()=>{
 
