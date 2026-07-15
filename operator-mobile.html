@@ -192,16 +192,124 @@ SETUP SCREEN
 CONTROL SCREEN
 ======================================= -->
 
-<div
-id="controlScreen"
-style="display:none;">
+<div id="controlScreen" style="display:none;">
+
+    <!-- HEADER -->
+
+    <div class="topBar">
+
+        <div class="playerPanel">
+
+            <div class="playerTitle" id="leftName">
+                LEFT PLAYER
+            </div>
+
+            <div class="scoreNumber" id="leftScore">
+                0
+            </div>
+
+            <div class="serveIndicator" id="serveA"></div>
+
+        </div>
+
+        <div class="centerPanel">
+
+            <div class="timer" id="timer">
+                00:00
+            </div>
+
+            <div class="setText" id="setText">
+                SET 1
+            </div>
+
+            <div class="statusText" id="statusText">
+                READY
+            </div>
+
+        </div>
+
+        <div class="playerPanel">
+
+            <div class="playerTitle" id="rightName">
+                RIGHT PLAYER
+            </div>
+
+            <div class="scoreNumber" id="rightScore">
+                0
+            </div>
+
+            <div class="serveIndicator" id="serveB"></div>
+
+        </div>
+
+    </div>
+
+    <!-- SCORE BUTTON -->
+
+    <div class="scoreGrid">
+
+        <button id="plusA" class="btnGreen">
+            +1
+        </button>
+
+        <button id="minusA" class="btnRed">
+            -1
+        </button>
+
+        <button id="plusB" class="btnGreen">
+            +1
+        </button>
+
+        <button id="minusB" class="btnRed">
+            -1
+        </button>
+
+    </div>
+
+    <!-- TIMER -->
+
+    <div class="buttonGrid">
+
+        <button id="startTimer" class="btnBlue">
+            ▶ START
+        </button>
+
+        <button id="stopTimer" class="btnOrange">
+            ■ STOP
+        </button>
+
+        <button id="resetTimer" class="btnRed">
+            RESET
+        </button>
+
+    </div>
+
+    <!-- MATCH -->
+
+    <div class="buttonGrid">
+
+        <button id="nextSet" class="btnBlue">
+            NEXT SET
+        </button>
+
+        <button id="undo" class="btnOrange">
+            UNDO
+        </button>
+
+        <button id="resetMatch" class="btnRed">
+            RESET MATCH
+        </button>
+
+    </div>
 
 </div>
 
+<script>
+window.IS_OPERATOR = true;
+</script>
+
 <script src="js/app.js"></script>
-
 <script src="js/sync.js"></script>
-
 <script src="js/operator-mobile.js"></script>
 
 </body>
