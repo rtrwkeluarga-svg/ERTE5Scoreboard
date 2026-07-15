@@ -1,76 +1,75 @@
 /*==================================================
  ERTE5 SCOREBOARD PRO
- SYNC.JS
+ FIREBASE REST SYNC
 ==================================================*/
 
 "use strict";
 
-const Sync = {
+const FIREBASE_URL =
+"https://erte5-scoreboard-default-rtdb.asia-southeast1.firebasedatabase.app/scoreboard.json";
 
-    channel:null,
+window.Sync={
 
-    clientId:crypto.randomUUID(),
+    isSending:false,
 
-    listeners:[],
-
-    init(){
-
-        this.channel = new BroadcastChannel(
-            "erte5-scoreboard"
-        );
-
-        this.channel.onmessage = (event)=>{
-
-            const message = event.data;
-
-            if(message.sender===this.clientId){
-
-                return;
-
-            }
-
-            if(message.type==="STATE"){
-
-                this.listeners.forEach(fn=>{
-
-                    fn(message.state);
-
-                });
-
-            }
-
-        };
-
-    },
+    lastData:"",
 
     send(state){
 
-        if(!this.channel){
+        if(this.isSending) return;
 
-            return;
+        this.isSending=true;
 
-        }
+        fetch(FIREBASE_URL,{
 
-        this.channel.postMessage({
+            method:"PUT",
 
-            sender:this.clientId,
+            headers:{
+                "Content-Type":"application/json"
+            },
 
-            type:"STATE",
+            body:JSON.stringify(state)
 
-            state:structuredClone(state)
+        })
+
+        .finally(()=>{
+
+            this.isSending=false;
 
         });
 
     },
 
-    onState(callback){
+    receive(callback){
 
-        this.listeners.push(callback);
+        let lastJSON="";
+
+        setInterval(()=>{
+
+            fetch(FIREBASE_URL)
+
+            .then(r=>r.json())
+
+            .then(data=>{
+
+                if(!data) return;
+
+                const json=JSON.stringify(data);
+
+                if(json===lastJSON) return;
+
+                lastJSON=json;
+
+                callback(data);
+
+            })
+
+            .catch(()=>{});
+
+        },300);
 
     }
 
 };
 
-Sync.init();
-
-console.log("SYNC READY");
+console.log("Firebase REST Ready");
