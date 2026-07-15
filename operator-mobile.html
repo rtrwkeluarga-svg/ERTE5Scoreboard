@@ -192,37 +192,36 @@ SETUP SCREEN
 CONTROL SCREEN
 ======================================= -->
 
-<div id="controlScreen" style="display:none;">
 
-    <!-- HEADER -->
+<div id="controlScreen">
 
     <div class="topBar">
 
         <div class="playerPanel">
 
-            <div class="playerTitle" id="leftName">
+            <div id="leftName" class="playerName">
                 LEFT PLAYER
             </div>
 
-            <div class="scoreNumber" id="leftScore">
+            <div id="leftScore" class="scoreValue">
                 0
             </div>
 
-            <div class="serveIndicator" id="serveA"></div>
+            <div id="serveA" class="serveText"></div>
 
         </div>
 
         <div class="centerPanel">
 
-            <div class="timer" id="timer">
+            <div id="timer" class="timerValue">
                 00:00
             </div>
 
-            <div class="setText" id="setText">
+            <div id="setText" class="setValue">
                 SET 1
             </div>
 
-            <div class="statusText" id="statusText">
+            <div id="statusText" class="statusValue">
                 READY
             </div>
 
@@ -230,73 +229,59 @@ CONTROL SCREEN
 
         <div class="playerPanel">
 
-            <div class="playerTitle" id="rightName">
+            <div id="rightName" class="playerName">
                 RIGHT PLAYER
             </div>
 
-            <div class="scoreNumber" id="rightScore">
+            <div id="rightScore" class="scoreValue">
                 0
             </div>
 
-            <div class="serveIndicator" id="serveB"></div>
+            <div id="serveB" class="serveText"></div>
 
         </div>
 
     </div>
 
-    <!-- SCORE BUTTON -->
+    <div class="scoreButtons">
 
-    <div class="scoreGrid">
+        <button id="plusA" class="green">+1</button>
 
-        <button id="plusA" class="btnGreen">
-            +1
+        <button id="minusA" class="red">-1</button>
+
+        <button id="plusB" class="green">+1</button>
+
+        <button id="minusB" class="red">-1</button>
+
+    </div>
+
+    <div class="controlButtons">
+
+        <button id="startTimer" class="blue">
+            START
         </button>
 
-        <button id="minusA" class="btnRed">
-            -1
+        <button id="stopTimer" class="orange">
+            STOP
         </button>
 
-        <button id="plusB" class="btnGreen">
-            +1
-        </button>
-
-        <button id="minusB" class="btnRed">
-            -1
+        <button id="resetTimer" class="red">
+            RESET TIMER
         </button>
 
     </div>
 
-    <!-- TIMER -->
+    <div class="controlButtons">
 
-    <div class="buttonGrid">
-
-        <button id="startTimer" class="btnBlue">
-            ▶ START
-        </button>
-
-        <button id="stopTimer" class="btnOrange">
-            ■ STOP
-        </button>
-
-        <button id="resetTimer" class="btnRed">
-            RESET
-        </button>
-
-    </div>
-
-    <!-- MATCH -->
-
-    <div class="buttonGrid">
-
-        <button id="nextSet" class="btnBlue">
+        <button id="nextSet" class="blue">
             NEXT SET
         </button>
 
-        <button id="undo" class="btnOrange">
+        <button id="undo" class="orange">
             UNDO
         </button>
 
-        <button id="resetMatch" class="btnRed">
+        <button id="resetMatch" class="red">
             RESET MATCH
         </button>
 
