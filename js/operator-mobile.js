@@ -87,8 +87,7 @@ function bindControl(){
 
     control.status=document.getElementById("statusText");
 
-    control.serveA=document.getElementById("serveA");
-    control.serveB=document.getElementById("serveB");
+    
 
 }
 
