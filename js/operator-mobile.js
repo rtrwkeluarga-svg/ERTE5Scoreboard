@@ -144,7 +144,7 @@ function checkMatchState(){
     const state = Scoreboard.getState();
 
     // Jika pertandingan sudah dimulai
-    if(state.status !== "READY"){
+    if(state.playerA && state.playerB){
 
         el.setupScreen.style.display = "none";
         el.controlScreen.style.display = "flex";
@@ -300,13 +300,16 @@ function bindButton(){
 
     document.getElementById("resetMatch").onclick=()=>{
 
-        if(confirm("Reset pertandingan?")){
+    if(confirm("Reset pertandingan?")){
 
-            Scoreboard.resetMatch();
+        Scoreboard.resetMatch();
 
-        }
+        el.controlScreen.style.display="none";
+        el.setupScreen.style.display="flex";
 
-    };
+    }
+
+};
 
 }
 
