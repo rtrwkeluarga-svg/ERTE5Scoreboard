@@ -1,6 +1,6 @@
 /*==================================================
- ERTE5 SCOREBOARD PRO
- OPERATOR.JS
+ERTE5 SCOREBOARD MOBILE
+operator-mobile.js
 ==================================================*/
 
 "use strict";
@@ -9,505 +9,204 @@
 ELEMENT
 ==================================================*/
 
-const el={
+const el = {
 
-    playerA:document.getElementById("playerAName"),
+    setupScreen: document.getElementById("setupScreen"),
 
-    playerB:document.getElementById("playerBName"),
+    controlScreen: document.getElementById("controlScreen"),
 
-    sport:document.getElementById("sportSelect"),
+    sport: document.getElementById("sport"),
 
-    bestOf:document.getElementById("bestOfSelect"),
+    bestOf: document.getElementById("bestOf"),
 
-    serve:document.getElementById("serveSelect"),
+    serve: document.getElementById("serve"),
 
-    status:document.getElementById("matchStatus"),
+    playerA: document.getElementById("playerA"),
 
-    connection:document.getElementById("connectionStatus"),
+    playerB: document.getElementById("playerB"),
 
-    scoreA:document.getElementById("scoreA"),
+    organizer: document.getElementById("organizer"),
 
-    scoreB:document.getElementById("scoreB"),
+    eventName: document.getElementById("eventName"),
 
-    setA:document.getElementById("setA"),
+    eventSubtitle: document.getElementById("eventSubtitle"),
 
-    setB:document.getElementById("setB"),
+    logo: document.getElementById("logo"),
 
-    timer:document.getElementById("timer"),
+    mirror: document.getElementById("mirrorDisplay"),
 
-    history:document.getElementById("historyBody"),
+    flip: document.getElementById("flipDisplay"),
 
-    startMatch:document.getElementById("startMatch"),
-
-    plusA:document.getElementById("plusA"),
-
-    minusA:document.getElementById("minusA"),
-
-    plusB:document.getElementById("plusB"),
-
-    minusB:document.getElementById("minusB"),
-
-    startTimer:document.getElementById("startTimer"),
-
-    stopTimer:document.getElementById("stopTimer"),
-
-    resetTimer:document.getElementById("resetTimer"),
-
-    undo:document.getElementById("undo"),
-
-    nextSet:document.getElementById("nextSet"),
-
-    resetMatch:document.getElementById("resetMatch")
+    start: document.getElementById("btnStartMatch")
 
 };
 
 /*==================================================
-INIT
+LOGO
 ==================================================*/
 
-window.addEventListener(
+let logoData = "";
 
-    "DOMContentLoaded",
+el.logo.addEventListener("change", function () {
 
-    init
+    const file = this.files[0];
 
-);
+    if (!file) return;
 
-function init(){
+    const reader = new FileReader();
 
-    bindEvents();
+    reader.onload = function (e) {
 
-    bindState();
-
-    render(
-
-        Scoreboard.getState()
-
-    );
-
-}
-
-/*==================================================
-STATE
-==================================================*/
-
-function bindState(){
-
-    Scoreboard.subscribe(
-
-        render
-
-    );
-
-}
-
-/*==================================================
-EVENT
-==================================================*/
-
-let currentState = null;
-
-function bindEvents(){
-
-
-    const logoInput=document.getElementById(
-
-    "logoInput"
-
-);
-
-logoInput.addEventListener(
-
-    "change",
-
-    function(e){
-
-        const file=e.target.files[0];
-
-        if(!file) return;
-
-        const reader=new FileReader();
-
-        reader.onload=function(){
-
-            window.eventLogo=
-
-                reader.result;
-
-        };
-
-        reader.readAsDataURL(file);
-
-    }
-
-);
-
-    el.startMatch.onclick=startMatch;
-
-    el.plusA.onclick = ()=>{
-
-    if(currentState && currentState.swapSide){
-
-        Scoreboard.addPoint("B");
-
-    }else{
-
-        Scoreboard.addPoint("A");
-
-    }
-
-};
-
-el.minusA.onclick = ()=>{
-
-    if(currentState && currentState.swapSide){
-
-        Scoreboard.removePoint("B");
-
-    }else{
-
-        Scoreboard.removePoint("A");
-
-    }
-
-};
-
-el.plusB.onclick = ()=>{
-
-    if(currentState && currentState.swapSide){
-
-        Scoreboard.addPoint("A");
-
-    }else{
-
-        Scoreboard.addPoint("B");
-
-    }
-
-};
-
-el.minusB.onclick = ()=>{
-
-    if(currentState && currentState.swapSide){
-
-        Scoreboard.removePoint("A");
-
-    }else{
-
-        Scoreboard.removePoint("B");
-
-    }
-
-};
-
-    el.startTimer.onclick=()=>{
-
-        Scoreboard.startTimer();
+        logoData = e.target.result;
 
     };
 
-    el.stopTimer.onclick=()=>{
+    reader.readAsDataURL(file);
 
-        Scoreboard.stopTimer();
-
-    };
-
-    el.resetTimer.onclick=()=>{
-
-        Scoreboard.resetTimer();
-
-    };
-
-    el.undo.onclick=()=>{
-
-        Scoreboard.undo();
-
-    };
-
-    el.nextSet.onclick=()=>{
-
-        Scoreboard.nextSet();
-
-    };
-
-    el.resetMatch.onclick=()=>{
-
-        if(confirm(
-
-            "Reset pertandingan?"
-
-        )){
-
-            Scoreboard.resetMatch();
-
-        }
-
-    };
-
-}
+});
 
 /*==================================================
 START MATCH
 ==================================================*/
 
+el.start.addEventListener("click", startMatch);
+
 function startMatch(){
 
-    Scoreboard.startMatch({
+    el.setupScreen.style.display="none";
 
-    sport:el.sport.value,
+    el.controlScreen.style.display="block";
 
-    bestOf:Number(
+    el.controlScreen.innerHTML=`
 
-        el.bestOf.value
+<div class="mobileControl">
 
-    ),
+    <div class="scoreHeader">
 
-    playerA:el.playerA.value,
+        <div class="playerBox">
 
-    playerB:el.playerB.value,
+            <div class="playerName" id="leftName">
 
-    serve:el.serve.value,
+                ${el.playerA.value||"LEFT PLAYER"}
 
-    organizer:
+            </div>
 
-        document.getElementById(
+            <div class="score" id="leftScore">
 
-            "organizerInput"
+                0
 
-        ).value,
+            </div>
 
-    eventName:
+        </div>
 
-        document.getElementById(
+        <div class="timerBox">
 
-            "eventInput"
+            <div class="timer" id="mobileTimer">
 
-        ).value,
+                00:00
 
-    eventSubtitle:
+            </div>
 
-        document.getElementById(
+            <div class="setInfo">
 
-            "subtitleInput"
+                SET 1
 
-        ).value,
+            </div>
 
-    logo:window.eventLogo || "",
+        </div>
 
-    mirror:
-document.getElementById("mirrorDisplay").checked,
+        <div class="playerBox">
 
-flipDisplay:
-document.getElementById("flipDisplay").checked
+            <div class="playerName" id="rightName">
 
-});
+                ${el.playerB.value||"RIGHT PLAYER"}
+
+            </div>
+
+            <div class="score" id="rightScore">
+
+                0
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="scoreButtonRow">
+
+        <button id="plusA" class="green">
+
+            +1
+
+        </button>
+
+        <button id="minusA" class="red">
+
+            -1
+
+        </button>
+
+        <button id="plusB" class="green">
+
+            +1
+
+        </button>
+
+        <button id="minusB" class="red">
+
+            -1
+
+        </button>
+
+    </div>
+
+    <div class="controlButtonRow">
+
+        <button id="startTimer">
+
+            START
+
+        </button>
+
+        <button id="stopTimer">
+
+            STOP
+
+        </button>
+
+        <button id="resetTimer">
+
+            RESET
+
+        </button>
+
+    </div>
+
+    <div class="controlButtonRow">
+
+        <button id="nextSet">
+
+            NEXT SET
+
+        </button>
+
+        <button id="undo">
+
+            UNDO
+
+        </button>
+
+        <button id="resetMatch">
+
+            RESET MATCH
+
+        </button>
+
+    </div>
+
+</div>
+
+`;
 
 }
-
-/*==================================================
-RENDER
-==================================================*/
-
-function render(state){
-
-    currentState = state;
-
-    let leftName, rightName;
-    let leftScore, rightScore;
-    let leftSet, rightSet;
-
-    if(state.swapSide){
-
-        leftName = state.playerB;
-        rightName = state.playerA;
-
-        leftScore = state.scoreB;
-        rightScore = state.scoreA;
-
-        leftSet = state.setB;
-        rightSet = state.setA;
-
-    }else{
-
-        leftName = state.playerA;
-        rightName = state.playerB;
-
-        leftScore = state.scoreA;
-        rightScore = state.scoreB;
-
-        leftSet = state.setA;
-        rightSet = state.setB;
-
-    }
-
-    el.playerA.value = leftName;
-    el.playerB.value = rightName;
-
-    el.scoreA.textContent = leftScore;
-    el.scoreB.textContent = rightScore;
-
-    el.setA.textContent = leftSet;
-    el.setB.textContent = rightSet;
-
-    el.status.value = state.status;
-
-    el.timer.textContent = formatTime(state.timer);
-
-    renderHistory(state.history);
-
-}
-
-/*==================================================
-FORMAT TIME
-==================================================*/
-
-function formatTime(total){
-
-    const minute=Math.floor(
-
-        total/60
-
-    );
-
-    const second=total%60;
-
-    return String(minute)
-
-        .padStart(2,"0")
-
-        +
-
-        ":"
-
-        +
-
-        String(second)
-
-        .padStart(2,"0");
-
-}
-
-/*==================================================
-HISTORY
-==================================================*/
-
-function renderHistory(history){
-
-    el.history.innerHTML="";
-
-    if(history.length===0){
-
-        el.history.innerHTML=
-
-        `
-        <tr>
-
-            <td>1</td>
-
-            <td>-</td>
-
-            <td>-</td>
-
-        </tr>
-        `;
-
-        return;
-
-    }
-
-    history.forEach(item=>{
-
-        const row=document.createElement("tr");
-
-        row.innerHTML=`
-
-            <td>${item.set}</td>
-
-            <td>${item.scoreA}</td>
-
-            <td>${item.scoreB}</td>
-
-        `;
-
-        el.history.appendChild(row);
-
-    });
-
-}
-
-/*==================================================
-DISPLAY CONNECTION
-==================================================*/
-
-let heartbeat=null;
-
-function setOnline(){
-
-    el.connection.textContent="ONLINE";
-
-    el.connection.classList.remove(
-
-        "offline"
-
-    );
-
-    el.connection.classList.add(
-
-        "online"
-
-    );
-
-    clearTimeout(heartbeat);
-
-    heartbeat=setTimeout(()=>{
-
-        setOffline();
-
-    },5000);
-
-}
-
-function setOffline(){
-
-    el.connection.textContent="OFFLINE";
-
-    el.connection.classList.remove(
-
-        "online"
-
-    );
-
-    el.connection.classList.add(
-
-        "offline"
-
-    );
-
-}
-
-/*==================================================
-SYNC
-==================================================*/
-
-if(typeof Sync!=="undefined"){
-
-    Sync.onState(function(){
-
-        setOnline();
-
-    });
-
-}
-
-/*==================================================
-READY
-==================================================*/
-
-console.log(
-
-    "OPERATOR READY"
-
-);
-
-
-
