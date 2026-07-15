@@ -71,142 +71,34 @@ START MATCH
 
 el.start.addEventListener("click", startMatch);
 
-function startMatch(){
+function startMatch() {
 
-    el.setupScreen.style.display="none";
+    const state = {
 
-    el.controlScreen.style.display="block";
+        sport: el.sport.value,
 
-    el.controlScreen.innerHTML=`
+        bestOf: Number(el.bestOf.value),
 
-<div class="mobileControl">
+        serve: el.serve.value,
 
-    <div class="scoreHeader">
+        playerA: el.playerA.value || "LEFT PLAYER",
 
-        <div class="playerBox">
+        playerB: el.playerB.value || "RIGHT PLAYER",
 
-            <div class="playerName" id="leftName">
+        organizer: el.organizer.value,
 
-                ${el.playerA.value||"LEFT PLAYER"}
+        eventName: el.eventName.value,
 
-            </div>
+        eventSubtitle: el.eventSubtitle.value,
 
-            <div class="score" id="leftScore">
+        logo: logoData,
 
-                0
+        mirror: el.mirror.checked,
 
-            </div>
+        flipDisplay: el.flip.checked
 
-        </div>
+    };
 
-        <div class="timerBox">
-
-            <div class="timer" id="mobileTimer">
-
-                00:00
-
-            </div>
-
-            <div class="setInfo">
-
-                SET 1
-
-            </div>
-
-        </div>
-
-        <div class="playerBox">
-
-            <div class="playerName" id="rightName">
-
-                ${el.playerB.value||"RIGHT PLAYER"}
-
-            </div>
-
-            <div class="score" id="rightScore">
-
-                0
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="scoreButtonRow">
-
-        <button id="plusA" class="green">
-
-            +1
-
-        </button>
-
-        <button id="minusA" class="red">
-
-            -1
-
-        </button>
-
-        <button id="plusB" class="green">
-
-            +1
-
-        </button>
-
-        <button id="minusB" class="red">
-
-            -1
-
-        </button>
-
-    </div>
-
-    <div class="controlButtonRow">
-
-        <button id="startTimer">
-
-            START
-
-        </button>
-
-        <button id="stopTimer">
-
-            STOP
-
-        </button>
-
-        <button id="resetTimer">
-
-            RESET
-
-        </button>
-
-    </div>
-
-    <div class="controlButtonRow">
-
-        <button id="nextSet">
-
-            NEXT SET
-
-        </button>
-
-        <button id="undo">
-
-            UNDO
-
-        </button>
-
-        <button id="resetMatch">
-
-            RESET MATCH
-
-        </button>
-
-    </div>
-
-</div>
-
-`;
+    console.log(state);
 
 }
