@@ -98,39 +98,35 @@ el.start.addEventListener("click", startMatch);
 
 function startMatch(){
 
-    el.setupScreen.style.display="none";
-
-    el.controlScreen.style.display="flex";
+    // Pindah halaman dulu
+    el.setupScreen.style.display = "none";
+    el.controlScreen.style.display = "flex";
 
     bindControl();
-
     bindButton();
 
+    // Baru kirim data ke Scoreboard
     Scoreboard.startMatch({
 
-    sport:el.sport.value,
+        sport: el.sport.value,
+        bestOf: Number(el.bestOf.value),
+        serve: el.serve.value,
 
-    bestOf:Number(el.bestOf.value),
+        playerA: el.playerA.value || "LEFT PLAYER",
+        playerB: el.playerB.value || "RIGHT PLAYER",
 
-    serve:el.serve.value,
+        organizer: el.organizer.value,
+        eventName: el.eventName.value,
+        eventSubtitle: el.eventSubtitle.value,
 
-    playerA:el.playerA.value,
+        logo: logoData,
 
-    playerB:el.playerB.value,
+        mirror: el.mirror.checked,
+        flipDisplay: el.flip.checked
 
-    organizer:el.organizer.value,
+    });
 
-    eventName:el.eventName.value,
-
-    eventSubtitle:el.eventSubtitle.value,
-
-    logo:logoData,
-
-    mirror:el.mirror.checked,
-
-    flipDisplay:el.flip.checked
-
-});
+}
 
 
 function formatTime(total){
