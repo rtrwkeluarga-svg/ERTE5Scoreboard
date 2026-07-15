@@ -335,3 +335,75 @@ function render(state){
     }
 
 }
+
+/*==================================================
+BUTTON EVENT
+==================================================*/
+
+function bindButton(){
+
+    document.getElementById("plusA").onclick=()=>{
+
+        Scoreboard.addPoint("A");
+
+    };
+
+    document.getElementById("minusA").onclick=()=>{
+
+        Scoreboard.removePoint("A");
+
+    };
+
+    document.getElementById("plusB").onclick=()=>{
+
+        Scoreboard.addPoint("B");
+
+    };
+
+    document.getElementById("minusB").onclick=()=>{
+
+        Scoreboard.removePoint("B");
+
+    };
+
+    document.getElementById("startTimer").onclick=()=>{
+
+        Scoreboard.startTimer();
+
+    };
+
+    document.getElementById("stopTimer").onclick=()=>{
+
+        Scoreboard.stopTimer();
+
+    };
+
+    document.getElementById("resetTimer").onclick=()=>{
+
+        Scoreboard.resetTimer();
+
+    };
+
+    document.getElementById("nextSet").onclick=()=>{
+
+        Scoreboard.nextSet();
+
+    };
+
+    document.getElementById("undo").onclick=()=>{
+
+        Scoreboard.undo();
+
+    };
+
+    document.getElementById("resetMatch").onclick=()=>{
+
+        if(confirm("Reset pertandingan?")){
+
+            Scoreboard.resetMatch();
+
+        }
+
+    };
+
+}
