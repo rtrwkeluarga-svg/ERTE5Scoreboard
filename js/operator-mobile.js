@@ -139,6 +139,25 @@ function formatTime(total){
 
 }
 
+function checkMatchState(){
+
+    const state = Scoreboard.getState();
+
+    // Jika pertandingan sudah dimulai
+    if(state.status !== "READY"){
+
+        el.setupScreen.style.display = "none";
+        el.controlScreen.style.display = "flex";
+
+        bindControl();
+        bindButton();
+
+        render(state);
+
+    }
+
+}
+
 /*==================================================
 RENDER
 ==================================================*/
