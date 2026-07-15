@@ -234,6 +234,11 @@ function render(state){
 
         control.status.textContent=state.status;
 
+        control.serveA.textContent =
+    state.serve==="A"?"🟢 SERVE":"";
+
+control.serveB.textContent =
+    state.serve==="B"?"🟢 SERVE":"";
         
 }
 
