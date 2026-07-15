@@ -160,3 +160,168 @@ LANDSCAPE HP
 }
 
 }
+
+/*==================================================
+CONTROL SCREEN
+==================================================*/
+
+#controlScreen{
+    width:100%;
+    height:100vh;
+    display:none;
+    flex-direction:column;
+    padding:15px;
+    background:#0f172a;
+}
+
+/*==================================================
+HEADER
+==================================================*/
+
+.topBar{
+    display:grid;
+    grid-template-columns:1fr 220px 1fr;
+    gap:15px;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.playerPanel{
+    background:#1e293b;
+    border-radius:18px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 0 15px rgba(0,0,0,.35);
+}
+
+.playerTitle{
+    font-size:24px;
+    font-weight:bold;
+    color:#38bdf8;
+    margin-bottom:10px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.scoreNumber{
+    font-size:84px;
+    font-weight:900;
+    line-height:1;
+}
+
+.serveIndicator{
+    margin-top:10px;
+    height:26px;
+    font-size:18px;
+    color:#22c55e;
+    font-weight:bold;
+}
+
+/*==================================================
+CENTER
+==================================================*/
+
+.centerPanel{
+    background:#1e293b;
+    border-radius:18px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 0 15px rgba(0,0,0,.35);
+}
+
+.timer{
+    font-size:54px;
+    font-weight:bold;
+    color:#facc15;
+}
+
+.setText{
+    font-size:28px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.statusText{
+    margin-top:8px;
+    font-size:18px;
+    color:#22c55e;
+}
+
+/*==================================================
+BUTTON
+==================================================*/
+
+.scoreGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.buttonGrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.scoreGrid button,
+.buttonGrid button{
+
+    height:70px;
+
+    border:none;
+
+    border-radius:16px;
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.15s;
+
+}
+
+.scoreGrid button:active,
+.buttonGrid button:active{
+
+    transform:scale(.95);
+
+}
+
+/*==================================================
+BUTTON COLOR
+==================================================*/
+
+.btnGreen{
+
+    background:#16a34a;
+
+}
+
+.btnRed{
+
+    background:#dc2626;
+
+}
+
+.btnBlue{
+
+    background:#2563eb;
+
+}
+
+.btnOrange{
+
+    background:#ea580c;
+
+}
+
+/*==================================================
+LANDSCAPE
+================================================
