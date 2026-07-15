@@ -170,8 +170,30 @@ if(state.swapSide){
     el.playerB.textContent = rightName;
 
     // =========================
-    // SCORE ANIMATION
-    // =========================
+// SCORE ANIMATION
+// =========================
+
+if(state.swapSide){
+
+    // Kiri menampilkan scoreB
+    if(state.scoreB !== lastScoreB){
+
+        el.scoreA.classList.remove("animate");
+        void el.scoreA.offsetWidth;
+        el.scoreA.classList.add("animate");
+
+    }
+
+    // Kanan menampilkan scoreA
+    if(state.scoreA !== lastScoreA){
+
+        el.scoreB.classList.remove("animate");
+        void el.scoreB.offsetWidth;
+        el.scoreB.classList.add("animate");
+
+    }
+
+}else{
 
     if(state.scoreA !== lastScoreA){
 
@@ -188,6 +210,8 @@ if(state.swapSide){
         el.scoreB.classList.add("animate");
 
     }
+
+}
 
     el.scoreA.textContent = leftScore;
     el.scoreB.textContent = rightScore;
