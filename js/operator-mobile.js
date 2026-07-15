@@ -159,6 +159,24 @@ function checkMatchState(){
 }
 
 /*==================================================
+SYNC
+==================================================*/
+
+function bindSync(){
+
+    Sync.receive(function(state){
+
+        Scoreboard.update(state);
+
+        checkMatchState();
+
+    });
+
+}
+
+bindSync();
+
+/*==================================================
 RENDER
 ==================================================*/
 
