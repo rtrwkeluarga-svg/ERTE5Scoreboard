@@ -66,6 +66,31 @@ el.logo.addEventListener("change", function () {
 });
 
 /*==================================================
+CONTROL ELEMENT
+==================================================*/
+
+const control={};
+
+function bindControl(){
+
+    control.leftName=document.getElementById("leftName");
+    control.rightName=document.getElementById("rightName");
+
+    control.leftScore=document.getElementById("leftScore");
+    control.rightScore=document.getElementById("rightScore");
+
+    control.timer=document.getElementById("timer");
+
+    control.set=document.getElementById("setText");
+
+    control.status=document.getElementById("statusText");
+
+    control.serveA=document.getElementById("serveA");
+    control.serveB=document.getElementById("serveB");
+
+}
+
+/*==================================================
 START MATCH
 ==================================================*/
 
@@ -76,6 +101,34 @@ function startMatch(){
     el.setupScreen.style.display="none";
 
     el.controlScreen.style.display="flex";
+
+    bindControl();
+
+    Scoreboard.startMatch({
+
+    sport:el.sport.value,
+
+    bestOf:Number(el.bestOf.value),
+
+    serve:el.serve.value,
+
+    playerA:el.playerA.value,
+
+    playerB:el.playerB.value,
+
+    organizer:el.organizer.value,
+
+    eventName:el.eventName.value,
+
+    eventSubtitle:el.eventSubtitle.value,
+
+    logo:logoData,
+
+    mirror:el.mirror.checked,
+
+    flipDisplay:el.flip.checked
+
+});
 
     el.controlScreen.innerHTML=`
 
@@ -208,5 +261,77 @@ function startMatch(){
 </div>
 
 `;
+
+}
+
+function formatTime(total){
+
+    const m=Math.floor(total/60);
+
+    const s=total%60;
+
+    return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+
+}
+
+/*==================================================
+RENDER
+==================================================*/
+
+Scoreboard.subscribe(render);
+
+function render(state){
+
+    let leftName,rightName;
+    let leftScore,rightScore;
+    let leftSet,rightSet;
+
+    if(state.swapSide){
+
+        leftName=state.playerB;
+        rightName=state.playerA;
+
+        leftScore=state.scoreB;
+        rightScore=state.scoreA;
+
+        leftSet=state.setB;
+        rightSet=state.setA;
+
+    }else{
+
+        leftName=state.playerA;
+        rightName=state.playerB;
+
+        leftScore=state.scoreA;
+        rightScore=state.scoreB;
+
+        leftSet=state.setA;
+        rightSet=state.setB;
+
+    }
+
+    if(control.leftName){
+
+        control.leftName.textContent=leftName;
+
+        control.rightName.textContent=rightName;
+
+        control.leftScore.textContent=leftScore;
+
+        control.rightScore.textContent=rightScore;
+
+        control.timer.textContent=formatTime(state.timer);
+
+        control.set.textContent="SET "+state.currentSet;
+
+        control.status.textContent=state.status;
+
+        control.serveA.textContent=
+        state.serve==="A"?"🟢 SERVE":"";
+
+        control.serveB.textContent=
+        state.serve==="B"?"🟢 SERVE":"";
+
+    }
 
 }
