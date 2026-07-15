@@ -633,13 +633,17 @@ AUTO SYNC
 
 Scoreboard.subscribe(function(state){
 
+    // Hanya operator yang mengirim data ke Firebase
+    if(window.IS_OPERATOR !== true){
+        return;
+    }
+
     if(typeof Sync!=="undefined"){
 
         Sync.send(state);
 
     }
 
-    
 });
 
 console.log("APP READY");
