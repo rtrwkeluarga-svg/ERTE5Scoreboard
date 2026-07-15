@@ -188,6 +188,8 @@ function render(state){
 
     currentState = state;
 
+    console.log("swapSide =", state.swapSide);
+
     let leftName,rightName;
     let leftScore,rightScore;
     let leftSet,rightSet;
