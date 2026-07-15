@@ -41,9 +41,9 @@ const el={
 
 };
 
-let lastScoreA = 0;
+let lastLeftScore = null;
 
-let lastScoreB = 0;
+let lastRightScore = null;
 
 let lastStatus = "READY";
 
@@ -127,10 +127,12 @@ RENDER
 
 function render(state){
 
+    console.log("RENDER", state.scoreA, state.scoreB, state.timer);
+    
     let leftName, rightName;
-let leftScore, rightScore;
-let leftSet, rightSet;
-let serveLeft, serveRight;
+    let leftScore, rightScore;
+    let leftSet, rightSet;
+    let serveLeft, serveRight;
 
 if(state.swapSide){
 
@@ -163,55 +165,39 @@ if(state.swapSide){
 }
 
     // =========================
-    // PLAYER
-    // =========================
-
-    el.playerA.textContent = leftName;
-    el.playerB.textContent = rightName;
-
-    // =========================
 // SCORE ANIMATION
 // =========================
 
-if(state.swapSide){
+// Update angka dulu
+el.scoreA.textContent = leftScore;
+el.scoreB.textContent = rightScore;
 
-    // Kiri menampilkan scoreB
-    if(state.scoreB !== lastScoreB){
+// Animasi hanya jika nilai sebelumnya sudah ada
+if(lastLeftScore !== null && leftScore !== lastLeftScore){
 
-        el.scoreA.classList.remove("animate");
-        void el.scoreA.offsetWidth;
-        el.scoreA.classList.add("animate");
+    el.scoreA.classList.remove("animate");
+    void el.scoreA.offsetWidth;
+    el.scoreA.classList.add("animate");
 
-    }
-
-    // Kanan menampilkan scoreA
-    if(state.scoreA !== lastScoreA){
-
-        el.scoreB.classList.remove("animate");
-        void el.scoreB.offsetWidth;
-        el.scoreB.classList.add("animate");
-
-    }
-
-}else{
-
-    if(state.scoreA !== lastScoreA){
-
-        el.scoreA.classList.remove("animate");
-        void el.scoreA.offsetWidth;
-        el.scoreA.classList.add("animate");
-
-    }
-
-    if(state.scoreB !== lastScoreB){
-
-        el.scoreB.classList.remove("animate");
-        void el.scoreB.offsetWidth;
-        el.scoreB.classList.add("animate");
-
-    }
+    setTimeout(() => {
+    el.scoreA.classList.remove("animate");
+}, 350);
 
 }
+
+if(lastRightScore !== null && rightScore !== lastRightScore){
+
+    el.scoreB.classList.remove("animate");
+    void el.scoreB.offsetWidth;
+    el.scoreB.classList.add("animate");
+
+    setTimeout(() => {
+    el.scoreB.classList.remove("animate");
+}, 350);
+
+}
+
+
 
     el.scoreA.textContent = leftScore;
     el.scoreB.textContent = rightScore;
@@ -368,9 +354,9 @@ if(state.mirror){
     // SAVE LAST VALUE
     // =========================
 
-    lastScoreA=state.scoreA;
-    lastScoreB=state.scoreB;
-    lastStatus=state.status;
+    lastLeftScore = leftScore;
+    lastRightScore = rightScore;
+    lastStatus = state.status;
 
 }
 

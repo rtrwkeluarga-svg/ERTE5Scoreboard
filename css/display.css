@@ -492,7 +492,7 @@ SERVER ACTIVE
 
 .player.activeServe .score{
 
-    transform:scale(1.05);
+    transform:none;
 
 }
 

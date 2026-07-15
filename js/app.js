@@ -551,6 +551,16 @@ stopTimer(){
 
 },
 
+resetTimer(){
+
+    this.stopTimer();
+
+    this.state.timer = 0;
+
+    this.notify();
+
+},
+
 startTimer(){
 
     if(this.state.timerRunning) return;
@@ -564,6 +574,34 @@ startTimer(){
         this.notify();
 
     },1000);
+
+},
+
+nextSet(){
+
+    this.stopTimer();
+
+    this.state.scoreA = 0;
+    this.state.scoreB = 0;
+
+    this.state.timer = 0;
+
+    this.state.currentSet++;
+
+    this.state.overlay = "";
+
+    this.state.status = "LIVE";
+
+    // Tukar posisi kiri-kanan
+    this.state.swapSide = !this.state.swapSide;
+
+    // Ganti server awal
+    this.state.firstServer =
+        this.state.firstServer === "A" ? "B" : "A";
+
+    this.state.serve = this.state.firstServer;
+
+    this.notify();
 
 },
 
