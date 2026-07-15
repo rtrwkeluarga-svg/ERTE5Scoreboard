@@ -110,10 +110,169 @@ CONTROL
 ==================================================*/
 
 #controlScreen{
-    width:100%;
-    min-height:100vh;
-    padding:15px;
+
     display:none;
+
+    flex-direction:column;
+
+    width:100%;
+
+    min-height:100vh;
+
+    padding:15px;
+
+    background:#0f172a;
+
+}
+
+.topBar{
+
+    display:grid;
+
+    grid-template-columns:1fr 220px 1fr;
+
+    gap:15px;
+
+}
+
+.playerPanel,
+.centerPanel{
+
+    background:#1e293b;
+
+    border-radius:18px;
+
+    padding:15px;
+
+}
+
+.playerName{
+
+    color:#38bdf8;
+
+    text-align:center;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+.scoreValue{
+
+    text-align:center;
+
+    font-size:72px;
+
+    font-weight:bold;
+
+    color:white;
+
+}
+
+.timerValue{
+
+    text-align:center;
+
+    font-size:52px;
+
+    color:#facc15;
+
+    font-weight:bold;
+
+}
+
+.setValue{
+
+    text-align:center;
+
+    font-size:26px;
+
+    margin-top:10px;
+
+}
+
+.statusValue{
+
+    text-align:center;
+
+    color:#22c55e;
+
+}
+
+.scoreButtons{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+.controlButtons{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:12px;
+
+    margin-top:12px;
+
+}
+
+.scoreButtons button,
+.controlButtons button{
+
+    height:70px;
+
+    border:none;
+
+    border-radius:14px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:white;
+
+}
+
+.green{
+
+    background:#16a34a;
+
+}
+
+.red{
+
+    background:#dc2626;
+
+}
+
+.blue{
+
+    background:#2563eb;
+
+}
+
+.orange{
+
+    background:#ea580c;
+
+}
+
+.serveText{
+
+    text-align:center;
+
+    color:#22c55e;
+
+    margin-top:8px;
+
 }
 
 /*==================================================
