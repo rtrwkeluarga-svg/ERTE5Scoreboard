@@ -248,11 +248,19 @@ BUTTON EVENT
 
 function bindButton(){
 
-    document.getElementById("plusA").onclick=()=>{
+    document.getElementById("plusA").onclick = () => {
+
+    if(currentState && currentState.swapSide){
+
+        Scoreboard.addPoint("B");
+
+    }else{
 
         Scoreboard.addPoint("A");
 
-    };
+    }
+
+};
 
     document.getElementById("minusA").onclick=()=>{
 
