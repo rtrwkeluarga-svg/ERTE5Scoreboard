@@ -264,23 +264,47 @@ function bindButton(){
 
 };
 
-    document.getElementById("minusA").onclick=()=>{
+    document.getElementById("minusA").onclick = ()=>{
 
-        Scoreboard.removePoint("A");
-
-    };
-
-    document.getElementById("plusB").onclick=()=>{
-
-        Scoreboard.addPoint("B");
-
-    };
-
-    document.getElementById("minusB").onclick=()=>{
+    if(currentState && currentState.swapSide){
 
         Scoreboard.removePoint("B");
 
-    };
+    }else{
+
+        Scoreboard.removePoint("A");
+
+    }
+
+};
+
+    document.getElementById("plusB").onclick = ()=>{
+
+    if(currentState && currentState.swapSide){
+
+        Scoreboard.addPoint("A");
+
+    }else{
+
+        Scoreboard.addPoint("B");
+
+    }
+
+};
+
+    document.getElementById("minusB").onclick = ()=>{
+
+    if(currentState && currentState.swapSide){
+
+        Scoreboard.removePoint("A");
+
+    }else{
+
+        Scoreboard.removePoint("B");
+
+    }
+
+};
 
     document.getElementById("startTimer").onclick=()=>{
 
