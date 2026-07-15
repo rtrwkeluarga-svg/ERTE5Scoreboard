@@ -104,6 +104,8 @@ function startMatch(){
 
     bindControl();
 
+    bindButton();
+
     Scoreboard.startMatch({
 
     sport:el.sport.value,
