@@ -67,12 +67,15 @@ function init(){
 
     startClock();
 
+    // Daftarkan render sebagai listener
+    Scoreboard.subscribe(render);
+
+    // Mulai menerima update dari Firebase
     bindSync();
 
+    // Render awal
     render(
-
         Scoreboard.getState()
-
     );
 
 }
@@ -80,6 +83,7 @@ function init(){
 /*==================================================
 SYNC
 ==================================================*/
+
 
 function bindSync(){
 
