@@ -291,3 +291,9 @@ function bindButton(){
     };
 
 }
+
+window.addEventListener("DOMContentLoaded", function(){
+
+    checkMatchState();
+
+});
