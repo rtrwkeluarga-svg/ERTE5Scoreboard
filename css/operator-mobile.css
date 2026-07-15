@@ -1,15 +1,162 @@
-*{
+/*==================================================
+ERTE5 SCOREBOARD MOBILE
+==================================================*/
 
+*{
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    background:#0f172a;
+    color:#fff;
+}
+
+/*==================================================
+SETUP
+==================================================*/
+
+#setupScreen{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.setupCard{
+    width:100%;
+    max-width:900px;
+    background:#1e293b;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 0 25px rgba(0,0,0,.45);
+}
+
+.setupCard h1{
+    text-align:center;
+    margin-bottom:25px;
+    color:#38bdf8;
+    font-size:34px;
+}
+
+.group{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:16px;
+}
+
+.group label{
+    margin-bottom:8px;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.group input,
+.group select{
+    height:55px;
+    border:none;
+    border-radius:12px;
+    padding:0 15px;
+    font-size:18px;
+    background:#334155;
+    color:white;
+}
+
+.group input:focus,
+.group select:focus{
+    outline:2px solid #38bdf8;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.row label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:18px;
+}
+
+.primary{
+    width:100%;
+    height:65px;
+    margin-top:20px;
+    border:none;
+    border-radius:14px;
+    background:#22c55e;
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.primary:active{
+    transform:scale(.97);
+}
+
+/*==================================================
+CONTROL
+==================================================*/
+
+#controlScreen{
+    width:100%;
+    min-height:100vh;
+    padding:15px;
+    display:none;
+}
+
+/*==================================================
+BUTTON COLOR
+==================================================*/
+
+.btnGreen{
+    background:#16a34a;
+    color:white;
+}
+
+.btnRed{
+    background:#dc2626;
+    color:white;
+}
+
+.btnBlue{
+    background:#2563eb;
+    color:white;
+}
+
+.btnOrange{
+    background:#ea580c;
+    color:white;
+}
+
+/*==================================================
+LANDSCAPE HP
+==================================================*/
+
+@media (orientation:landscape){
+
+.setupCard{
+
+    max-width:1200px;
 
 }
 
-body{
+.group input,
+.group select{
 
-    background:#0f172a;
-    color:white;
-    font-family:Arial,sans-serif;
+    height:50px;
+
+}
 
 }
