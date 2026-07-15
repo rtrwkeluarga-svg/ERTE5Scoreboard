@@ -83,11 +83,9 @@ SYNC
 
 function bindSync(){
 
-    Sync.onState(function(state){
+    Sync.receive(function(state){
 
         Scoreboard.update(state);
-
-        render(state);
 
     });
 
