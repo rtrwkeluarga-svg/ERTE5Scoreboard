@@ -234,11 +234,23 @@ function render(state){
 
         control.status.textContent=state.status;
 
-        control.serveA.textContent=
-        state.serve==="A"?"🟢 SERVE":"";
+        if(state.swapSide){
 
-        control.serveB.textContent=
-        state.serve==="B"?"🟢 SERVE":"";
+    control.serveA.textContent =
+        state.serve==="B" ? "🟢 SERVE" : "";
+
+    control.serveB.textContent =
+        state.serve==="A" ? "🟢 SERVE" : "";
+
+}else{
+
+    control.serveA.textContent =
+        state.serve==="A" ? "🟢 SERVE" : "";
+
+    control.serveB.textContent =
+        state.serve==="B" ? "🟢 SERVE" : "";
+
+}
 
     }
 
