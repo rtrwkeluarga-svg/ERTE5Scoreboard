@@ -90,6 +90,9 @@ function bindControl(){
     control.serveA=document.getElementById("serveA");
     control.serveB=document.getElementById("serveB");
 
+    control.resetMatch = document.getElementById("resetMatch");
+    control.fullscreenBtn = document.getElementById("fullscreenBtn");
+
 }
 
 /*==================================================
@@ -248,6 +251,7 @@ function render(state){
 
 }
 
+
 /*==================================================
 BUTTON EVENT
 ==================================================*/
@@ -347,6 +351,20 @@ function bindButton(){
 
         el.controlScreen.style.display="none";
         el.setupScreen.style.display="flex";
+
+    }
+
+};
+
+    document.getElementById("fullscreenBtn").onclick = async () => {
+
+    if (!document.fullscreenElement) {
+
+        await document.documentElement.requestFullscreen();
+
+    } else {
+
+        await document.exitFullscreen();
 
     }
 

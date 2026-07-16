@@ -15,8 +15,8 @@ document.getElementById("btnOperator");
 const btnDisplay =
 document.getElementById("btnDisplay");
 
-const btnFullscreen =
-document.getElementById("btnFullscreen");
+const btnOperatorMobile =
+document.getElementById("btnOperatorMobile");
 
 const btnAbout =
 document.getElementById("btnAbout");
@@ -63,11 +63,11 @@ function bindEvent(){
 
     );
 
-    btnFullscreen.addEventListener(
+    btnOperatorMobile.addEventListener(
 
-        "click",
+    "click",
 
-        openDisplayFullscreen
+    openOperatorMobile
 
     );
 
@@ -109,25 +109,15 @@ function openDisplay(){
 
 }
 
-function openDisplayFullscreen(){
+function openOperatorMobile(){
 
-    const win = window.open(
+    window.open(
 
-        "display.html",
+        "operator-mobile.html",
 
         "_blank"
 
     );
-
-    if(!win){
-
-        alert(
-
-            "Popup diblokir browser."
-
-        );
-
-    }
 
 }
 
