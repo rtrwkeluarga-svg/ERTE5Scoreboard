@@ -302,7 +302,14 @@ document.getElementById("flipDisplay").checked
 
 });
 
+document.querySelector(".setup-card")
+.classList.add("collapsed");
+
+document.querySelector(".history-card")
+.classList.add("collapsed");
+
 }
+
 
 /*==================================================
 RENDER
@@ -489,15 +496,41 @@ function setOffline(){
 SYNC
 ==================================================*/
 
-if(typeof Sync!=="undefined"){
-
-    Sync.onState(function(){
-
+if (
+    typeof Sync !== "undefined" &&
+    typeof Sync.onState === "function"
+) {
+    Sync.onState(function () {
         setOnline();
-
     });
-
 }
+
+/*==================================================
+COLLAPSE PANEL
+==================================================*/
+
+window.addEventListener("DOMContentLoaded",()=>{
+
+    const setup=document.querySelector(".setup-card");
+    const history=document.querySelector(".history-card");
+
+    setup.querySelector("h2").addEventListener("click",function(e){
+
+    e.stopPropagation();
+
+    setup.classList.toggle("collapsed");
+
+});
+
+    history.querySelector("h2").addEventListener("click",function(e){
+
+    e.stopPropagation();
+
+    history.classList.toggle("collapsed");
+
+});
+
+});
 
 /*==================================================
 READY
