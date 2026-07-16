@@ -188,59 +188,63 @@ function render(state){
 
     currentState = state;
 
-    console.log("swapSide =", state.swapSide);
+    let leftName;
+    let rightName;
 
-    let leftName,rightName;
-    let leftScore,rightScore;
-    let leftSet,rightSet;
+    let leftScore;
+    let rightScore;
+
+    let serveLeft = "";
+    let serveRight = "";
 
     if(state.swapSide){
 
-        leftName=state.playerB;
-        rightName=state.playerA;
+        leftName = state.playerB;
+        rightName = state.playerA;
 
-        leftScore=state.scoreB;
-        rightScore=state.scoreA;
+        leftScore = state.scoreB;
+        rightScore = state.scoreA;
 
-        leftSet=state.setB;
-        rightSet=state.setA;
+        if(state.serve === "B"){
+            serveLeft = "🟢 SERVE";
+        }
+
+        if(state.serve === "A"){
+            serveRight = "🟢 SERVE";
+        }
 
     }else{
 
-        leftName=state.playerA;
-        rightName=state.playerB;
+        leftName = state.playerA;
+        rightName = state.playerB;
 
-        leftScore=state.scoreA;
-        rightScore=state.scoreB;
+        leftScore = state.scoreA;
+        rightScore = state.scoreB;
 
-        leftSet=state.setA;
-        rightSet=state.setB;
+        if(state.serve === "A"){
+            serveLeft = "🟢 SERVE";
+        }
 
-    }
-
-    if(control.leftName){
-
-        control.leftName.textContent=leftName;
-
-        control.rightName.textContent=rightName;
-
-        control.leftScore.textContent=leftScore;
-
-        control.rightScore.textContent=rightScore;
-
-        control.timer.textContent=formatTime(state.timer);
-
-        control.set.textContent="SET "+state.currentSet;
-
-        control.status.textContent=state.status;
-
-        control.serveA.textContent=
-        state.serve==="A"?"🟢 SERVE":"";
-
-        control.serveB.textContent=
-        state.serve==="B"?"🟢 SERVE":"";
+        if(state.serve === "B"){
+            serveRight = "🟢 SERVE";
+        }
 
     }
+
+    control.leftName.textContent = leftName;
+    control.rightName.textContent = rightName;
+
+    control.leftScore.textContent = leftScore;
+    control.rightScore.textContent = rightScore;
+
+    control.timer.textContent = formatTime(state.timer);
+
+    control.set.textContent = "SET " + state.currentSet;
+
+    control.status.textContent = state.status;
+
+    control.serveA.textContent = serveLeft;
+    control.serveB.textContent = serveRight;
 
 }
 
