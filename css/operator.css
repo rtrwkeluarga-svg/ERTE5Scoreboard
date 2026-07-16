@@ -557,62 +557,250 @@ SCROLLBAR
 RESPONSIVE
 ==================================================*/
 
-@media(max-width:1200px){
+/* ==================================================
+LANDSCAPE PHONE
+==================================================*/
 
-.control-grid{
+@media screen and (max-width:950px) and (orientation:landscape){
 
-    grid-template-columns:1fr;
+body{
 
-}
-
-.setup-grid{
-
-    grid-template-columns:1fr 1fr;
+    overflow:hidden;
 
 }
-
-}
-
-@media(max-width:768px){
 
 .app{
 
-    width:98%;
+    width:100%;
+    max-width:none;
+    margin:0;
+    padding:8px;
+    height:100vh;
 
 }
 
 .topbar{
 
-    flex-direction:column;
+    padding:10px 18px;
+    margin-bottom:8px;
 
-    gap:15px;
+}
 
-    text-align:center;
+.brand h1{
+
+    font-size:22px;
+
+}
+
+.brand span{
+
+    font-size:13px;
+
+}
+
+.connection{
+
+    font-size:14px;
+
+}
+
+.setup-card{
+
+    margin-bottom:8px;
+    padding:12px;
+
+}
+
+.setup-card h2{
+
+    font-size:18px;
+    margin-bottom:10px;
 
 }
 
 .setup-grid{
 
-    grid-template-columns:1fr;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+
+}
+
+.form-group label{
+
+    font-size:12px;
+
+}
+
+.form-group input,
+.form-group select{
+
+    height:38px;
+    font-size:14px;
+
+}
+
+.setup-action{
+
+    margin-top:12px;
+
+}
+
+.control-grid{
+
+    display:grid;
+    grid-template-columns:1fr 260px 1fr;
+    gap:10px;
+
+}
+
+.player-card{
+
+    padding:12px;
+
+}
+
+.player-card h2{
+
+    font-size:20px;
+    margin-bottom:10px;
+
+}
+
+.score-box{
+
+    padding:12px;
 
 }
 
 .score-box span{
 
-    font-size:80px;
+    font-size:120px;
+    line-height:1;
 
 }
 
-.timer-box span{
+.set-box{
 
-    font-size:42px;
+    margin-top:10px;
+    font-size:22px;
 
 }
 
 .button-group{
 
-    flex-direction:column;
+    gap:8px;
+    margin-top:12px;
 
 }
+
+.button-group button{
+
+    height:70px;
+    font-size:24px;
+    font-weight:bold;
+
+}
+
+.center-card{
+
+    padding:12px;
+
+}
+
+.center-card h2{
+
+    font-size:20px;
+    margin-bottom:10px;
+
+}
+
+.timer-box{
+
+    padding:12px;
+    margin-bottom:12px;
+
+}
+
+.timer-box span{
+
+    font-size:50px;
+
+}
+
+.button-column{
+
+    gap:8px;
+
+}
+
+.button-column .btn{
+
+    height:55px;
+    font-size:16px;
+
+}
+
+
+}
+
+@media screen and (min-width:951px) and (max-width:1280px){
+
+.score-box span{
+
+    font-size:140px;
+
+}
+
+.control-grid{
+
+    grid-template-columns:1fr 340px 1fr;
+
+}
+
+}
+
+
+/* ==========================================
+   COLLAPSE PANEL
+========================================== */
+
+.setup-card h2,
+.history-card h2{
+
+    cursor:pointer;
+    user-select:none;
+    margin:0;
+    padding:12px 0;
+
+}
+
+.setup-card h2::before,
+.history-card h2::before{
+
+    content:"▼ ";
+
+}
+
+.setup-card.collapsed h2::before,
+.history-card.collapsed h2::before{
+
+    content:"▶ ";
+
+}
+
+/* SEMBUNYIKAN ISI SETUP */
+
+.setup-card.collapsed .setup-grid,
+.setup-card.collapsed .setup-action{
+
+    display:none;
+
+}
+
+/* SEMBUNYIKAN ISI HISTORY */
+
+.history-card.collapsed table{
+
+    display:none;
 
 }
