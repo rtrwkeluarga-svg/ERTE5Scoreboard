@@ -275,6 +275,10 @@ EVENT INFORMATION
 
             </button>
 
+            <button id="fullscreenBtn" class="btn">
+⛶ FULLSCREEN
+</button>
+
         </div>
 
     </section>
@@ -551,6 +555,61 @@ window.IS_OPERATOR = true;
 <script src="js/app.js"></script>
 <script src="js/operator.js"></script>
 
-</body>
+<script>
 
+// ================================
+// FULLSCREEN
+// ================================
+
+document.getElementById("fullscreenBtn").onclick = async () => {
+
+    if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+    } else {
+        await document.exitFullscreen();
+    }
+
+};
+
+// ================================
+// WAKE LOCK
+// ================================
+
+let wakeLock = null;
+
+async function lockScreen() {
+
+    if ('wakeLock' in navigator) {
+
+        try {
+
+            wakeLock = await navigator.wakeLock.request('screen');
+
+            console.log("Wake Lock aktif");
+
+        } catch (err) {
+
+            console.log(err);
+
+        }
+
+    }
+
+}
+
+lockScreen();
+
+document.addEventListener("visibilitychange", () => {
+
+    if (document.visibilityState === "visible") {
+
+        lockScreen();
+
+    }
+
+});
+
+</script>
+
+</body>
 </html>
