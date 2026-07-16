@@ -71,6 +71,8 @@ CONTROL ELEMENT
 
 const control={};
 
+let currentState = null;
+
 function bindControl(){
 
     control.leftName=document.getElementById("leftName");
@@ -184,6 +186,10 @@ Scoreboard.subscribe(render);
 
 function render(state){
 
+    currentState = state;
+
+    console.log("swapSide =", state.swapSide);
+
     let leftName,rightName;
     let leftScore,rightScore;
     let leftSet,rightSet;
@@ -244,30 +250,61 @@ BUTTON EVENT
 
 function bindButton(){
 
-    document.getElementById("plusA").onclick=()=>{
+    document.getElementById("plusA").onclick = () => {
 
-        Scoreboard.addPoint("A");
-
-    };
-
-    document.getElementById("minusA").onclick=()=>{
-
-        Scoreboard.removePoint("A");
-
-    };
-
-    document.getElementById("plusB").onclick=()=>{
+    if(currentState && currentState.swapSide){
 
         Scoreboard.addPoint("B");
 
-    };
+    }else{
 
-    document.getElementById("minusB").onclick=()=>{
+        Scoreboard.addPoint("A");
+
+    }
+
+};
+
+    document.getElementById("minusA").onclick = ()=>{
+
+    if(currentState && currentState.swapSide){
 
         Scoreboard.removePoint("B");
 
-    };
+    }else{
 
+        Scoreboard.removePoint("A");
+
+    }
+
+};
+
+    document.getElementById("plusB").onclick = ()=>{
+
+    if(currentState && currentState.swapSide){
+
+        Scoreboard.addPoint("A");
+
+    }else{
+
+        Scoreboard.addPoint("B");
+
+    }
+
+};
+
+    document.getElementById("minusB").onclick = ()=>{
+
+    if(currentState && currentState.swapSide){
+
+        Scoreboard.removePoint("A");
+
+    }else{
+
+        Scoreboard.removePoint("B");
+
+    }
+
+};
     document.getElementById("startTimer").onclick=()=>{
 
         Scoreboard.startTimer();
