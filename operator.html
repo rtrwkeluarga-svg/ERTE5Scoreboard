@@ -135,19 +135,19 @@ EVENT INFORMATION
 
                 <select id="sportSelect">
 
-                    <option value="badminton">
+    <option value="badminton">
+        Bulutangkis
+    </option>
 
-                        Bulutangkis
+    <option value="tabletennis">
+        Tenis Meja
+    </option>
 
-                    </option>
+    <option value="padel">
+        Padel
+    </option>
 
-                    <option value="tabletennis">
-
-                        Tenis Meja
-
-                    </option>
-
-                </select>
+</select>
 
             </div>
 
@@ -293,9 +293,11 @@ EVENT INFORMATION
         <!-- PLAYER A                                  -->
         <!-- ========================================= -->
 
-        <div class="player-card">
+        <div class="player-card" id="playerA">
 
             <h2>LEFT SIDE</h2>
+
+            <div id="serveA" class="serve-indicator"></div>
 
             <div class="score-box">
 
@@ -421,57 +423,43 @@ EVENT INFORMATION
         <!-- PLAYER B                                  -->
         <!-- ========================================= -->
 
-        <div class="player-card">
+        
 
-            <h2>
+<div class="player-card" id="playerB">
 
-                RIGHT SIDE
+    <h2>RIGHT SIDE</h2>
 
-            </h2>
+    <div id="serveB" class="serve-indicator"></div>
 
-            <div class="score-box">
+    <div class="score-box">
 
-                <span id="scoreB">
+        <span id="scoreB">0</span>
 
-                    0
+    </div>
 
-                </span>
+    <div class="set-box">
 
-            </div>
+        Set : <span id="setB">0</span>
 
-            <div class="set-box">
+    </div>
 
-                Set :
+    <div class="button-group">
 
-                <span id="setB">
+        <button
+            id="plusB"
+            class="btn btn-success">
+            +1
+        </button>
 
-                    0
+        <button
+            id="minusB"
+            class="btn btn-danger">
+            -1
+        </button>
 
-                </span>
+    </div>
 
-            </div>
-
-            <div class="button-group">
-
-                <button
-                    id="plusB"
-                    class="btn btn-success">
-
-                    +1
-
-                </button>
-
-                <button
-                    id="minusB"
-                    class="btn btn-danger">
-
-                    -1
-
-                </button>
-
-            </div>
-
-        </div>
+</div>
 
     </section>
 
