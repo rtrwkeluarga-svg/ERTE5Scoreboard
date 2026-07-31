@@ -15,6 +15,12 @@ const el={
 
     playerB:document.getElementById("playerBName"),
 
+    panelA:document.getElementById("playerA"),
+    panelB:document.getElementById("playerB"),
+
+    serveA:document.getElementById("serveA"),
+    serveB:document.getElementById("serveB"),
+
     sport:document.getElementById("sportSelect"),
 
     bestOf:document.getElementById("bestOfSelect"),
@@ -322,6 +328,7 @@ function render(state){
     let leftName, rightName;
     let leftScore, rightScore;
     let leftSet, rightSet;
+    let serveLeft, serveRight;
 
     if(state.swapSide){
 
@@ -334,6 +341,9 @@ function render(state){
         leftSet = state.setB;
         rightSet = state.setA;
 
+        serveLeft = (state.serve === "B");
+        serveRight = (state.serve === "A");
+
     }else{
 
         leftName = state.playerA;
@@ -344,6 +354,9 @@ function render(state){
 
         leftSet = state.setA;
         rightSet = state.setB;
+
+        serveLeft = (state.serve === "A");
+        serveRight = (state.serve === "B");
 
     }
 
@@ -359,6 +372,25 @@ function render(state){
     el.status.value = state.status;
 
     el.timer.textContent = formatTime(state.timer);
+
+    el.serveA.textContent =
+    serveLeft ? "🟢 SERVE" : "";
+
+    el.serveB.textContent =
+    serveRight ? "🟢 SERVE" : "";
+
+    el.panelA.classList.remove("activeServe");
+    el.panelB.classList.remove("activeServe");
+
+if(serveLeft){
+
+    el.panelA.classList.add("activeServe");
+
+}else{
+
+    el.panelB.classList.add("activeServe");
+
+}
 
     renderHistory(state.history);
 
