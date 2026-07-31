@@ -25,7 +25,19 @@ const Scoreboard = {
         tabletennis:{
             targetScore:11,
             bestOf:5
-        }
+        },
+
+        padel:{
+
+        pointSystem:"tennis",
+
+        gamesPerSet:6,
+
+        tieBreak:7,
+
+        bestOf:3
+
+    }
 
     },
 
@@ -54,6 +66,14 @@ const Scoreboard = {
     setA:0,
 
     setB:0,
+
+    gameA:0,
+
+    gameB:0,
+
+    pointA:0,
+
+    pointB:0,
 
     currentSet:1,
 
@@ -258,6 +278,13 @@ const Scoreboard = {
 
         this.state.setB=0;
 
+// PADEL
+        this.state.gameA=0;
+        this.state.gameB=0;
+
+        this.state.pointA=0;
+        this.state.pointB=0;
+
         this.state.currentSet=1;
 
         this.state.timer=0;
@@ -285,6 +312,17 @@ ADD POINT
 addPoint(player){
 
     this.saveState();
+
+        // ==========================
+    // PADEL
+    // ==========================
+    if(this.state.sport==="padel"){
+
+        this.addPadelPoint(player);
+
+        return;
+
+    }
 
     // Tambah skor
     if(player==="A"){
@@ -609,6 +647,33 @@ removePoint(player){
 
     this.saveState();
 
+    // ==========================
+    // PADEL
+    // ==========================
+    if(this.state.sport==="padel"){
+
+        if(player==="A" && this.state.pointA>0){
+
+            this.state.pointA--;
+
+        }
+
+        if(player==="B" && this.state.pointB>0){
+
+            this.state.pointB--;
+
+        }
+
+        this.updatePadelScore();
+
+        return;
+
+    }
+
+    // ==========================
+    // BADMINTON / TABLE TENNIS
+    // ==========================
+
     if(player==="A" && this.state.scoreA>0){
 
         this.state.scoreA--;
@@ -626,6 +691,175 @@ removePoint(player){
 },
 
 /*
+/*
+==========================================
+PADEL ENGINE
+==========================================
+*/
+
+addPadelPoint(player){
+
+    const s=this.state;
+
+    if(player==="A"){
+
+        s.pointA++;
+
+    }else{
+
+        s.pointB++;
+
+    }
+
+    this.updatePadelScore();
+
+},
+
+/*
+==========================================
+UPDATE PADEL SCORE
+==========================================
+*/
+
+updatePadelScore(){
+
+    const s=this.state;
+
+    const pointName=[
+        "0",
+        "15",
+        "30",
+        "40"
+    ];
+
+    // Belum deuce
+    if(s.pointA<4 && s.pointB<4){
+
+        s.scoreA=pointName[s.pointA];
+        s.scoreB=pointName[s.pointB];
+
+        this.notify();
+        return;
+
+    }
+
+    // Deuce
+    if(s.pointA===s.pointB){
+
+        s.scoreA="40";
+        s.scoreB="40";
+
+        this.notify();
+        return;
+
+    }
+
+    // Advantage A
+    if(s.pointA>s.pointB){
+
+        if(s.pointA-s.pointB===1){
+
+            s.scoreA="AD";
+            s.scoreB="40";
+
+            this.notify();
+            return;
+
+        }
+
+        this.winPadelGame("A");
+        return;
+
+    }
+
+    // Advantage B
+    if(s.pointB>s.pointA){
+
+        if(s.pointB-s.pointA===1){
+
+            s.scoreA="40";
+            s.scoreB="AD";
+
+            this.notify();
+            return;
+
+        }
+
+        this.winPadelGame("B");
+
+    }
+
+},
+
+/*
+==========================================
+WIN PADEL GAME
+==========================================
+*/
+
+winPadelGame(winner){
+
+    const s=this.state;
+
+    if(winner==="A"){
+
+        s.gameA++;
+
+    }else{
+
+        s.gameB++;
+
+    }
+
+    // Reset point
+    s.pointA=0;
+    s.pointB=0;
+
+    s.scoreA="0";
+    s.scoreB="0";
+
+    // Cek SET
+    this.checkPadelSet();
+
+    this.notify();
+
+},
+
+/*
+==========================================
+CHECK PADEL SET
+==========================================
+*/
+
+checkPadelSet(){
+
+    const s=this.state;
+
+    if(s.gameA>=6 && s.gameA-s.gameB>=2){
+
+        this.finishSet("A");
+
+        s.gameA=0;
+        s.gameB=0;
+
+        return;
+
+    }
+
+    if(s.gameB>=6 && s.gameB-s.gameA>=2){
+
+        this.finishSet("B");
+
+        s.gameA=0;
+        s.gameB=0;
+
+        return;
+
+    }
+
+},
+
+/*
 ==========================================
 RESET MATCH
 ==========================================
@@ -638,6 +872,8 @@ resetMatch(){
 
     this.state.setA = 0;
     this.state.setB = 0;
+
+
 
     this.state.currentSet = 1;
 
