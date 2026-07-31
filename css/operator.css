@@ -830,3 +830,27 @@ body{
 
     transition:.2s;
 }
+
+.player-name{
+
+    margin-top:12px;
+
+    width:100%;
+
+    text-align:center;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#ffffff;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+}
