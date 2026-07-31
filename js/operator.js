@@ -21,6 +21,9 @@ const el={
     serveA:document.getElementById("serveA"),
     serveB:document.getElementById("serveB"),
 
+    historyPlayerA: document.getElementById("historyPlayerA"),
+    historyPlayerB: document.getElementById("historyPlayerB"),
+
     leftPlayerName:document.getElementById("leftPlayerName"),
     rightPlayerName:document.getElementById("rightPlayerName"),
 
@@ -365,6 +368,10 @@ function render(state){
 
     el.playerA.value = leftName;
     el.playerB.value = rightName;
+
+    // Header Match History selalu menggunakan nama pemain asli
+    el.historyPlayerA.textContent = state.playerA;
+    el.historyPlayerB.textContent = state.playerB;
 
     el.leftPlayerName.textContent = leftName;
     el.rightPlayerName.textContent = rightName;
