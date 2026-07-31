@@ -21,6 +21,9 @@ const el={
     serveA:document.getElementById("serveA"),
     serveB:document.getElementById("serveB"),
 
+    leftPlayerName:document.getElementById("leftPlayerName"),
+    rightPlayerName:document.getElementById("rightPlayerName"),
+
     sport:document.getElementById("sportSelect"),
 
     bestOf:document.getElementById("bestOfSelect"),
@@ -362,6 +365,9 @@ function render(state){
 
     el.playerA.value = leftName;
     el.playerB.value = rightName;
+
+    el.leftPlayerName.textContent = leftName;
+    el.rightPlayerName.textContent = rightName;
 
     el.scoreA.textContent = leftScore;
     el.scoreB.textContent = rightScore;
