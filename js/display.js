@@ -206,14 +206,40 @@ if(lastRightScore !== null && rightScore !== lastRightScore){
     el.scoreB.textContent = rightScore;
 
     // =========================
-    // SET
-    // =========================
+// SET / GAME
+// =========================
 
-    el.setA.textContent = leftSet;
-    el.setB.textContent = rightSet;
+if(state.sport==="padel"){
 
-    el.currentSet.textContent =
-        "SET " + state.currentSet;
+    let leftGame,rightGame;
+
+    if(state.swapSide){
+
+        leftGame=state.gameB;
+        rightGame=state.gameA;
+
+    }else{
+
+        leftGame=state.gameA;
+        rightGame=state.gameB;
+
+    }
+
+    el.setA.textContent=leftGame;
+    el.setB.textContent=rightGame;
+
+    el.currentSet.textContent=
+        "GAME";
+
+}else{
+
+    el.setA.textContent=leftSet;
+    el.setB.textContent=rightSet;
+
+    el.currentSet.textContent=
+        "SET "+state.currentSet;
+
+}
 
     // =========================
     // TIMER
